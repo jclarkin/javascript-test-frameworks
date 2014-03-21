@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Test Examples</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.14.0.css" />
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.0.2.js"></script>
+  <script src="https://code.jquery.com/qunit/qunit-1.14.0.js"></script>
+  <script src="main.js"></script>
+  <script>
+    test("buildMenuItem.simple", function() {
+      function contains(object, expected, message) {
+        ok(object.html().indexOf(expected) > 0, message);
+      }
+
+      var data = {
+        'name': 'Research Fault',
+        'url': '#',
+        'category': 'Line Technician',
+        'icon': 'book'
+      };
+
+      contains(buildMenuItem(data), "icon-main", "Looking for icon-main");
+      contains(buildMenuItem(data), "fa", "Looking for presence of Font-Awesome");
+    });
+    test("buildMenuItem.search", function() {
+
+      function contains(object, expected, message) {
+        ok(object.html().indexOf(expected) > 0, message);
+      }
+
+      var data = {
+        'name': 'Research Fault',
+        'url': '#',
+        'category': 'Line Technician',
+        'type': 'search',
+        'icon': 'book'
+      };
+
+      contains(buildMenuItem(data), "fa-search-plus", "Looking for presence of Search icon");
+    });
+    test("buildMenuItem.failure", function() {
+      function contains(object, expected, message) {
+        ok(object.html().indexOf(expected) > 0, message);
+      }
+
+      var data = {};
+
+      throws(function() {
+        buildMenuItem(data);
+      }, "Expecting failure due to malformed interface data");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <div id="idMenuContainer"></div>
+  </div>
+</body>
+
+</html>

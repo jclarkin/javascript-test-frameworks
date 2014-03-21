@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Test Examples</title>
+  <script src="//chaijs.com/chai.js"></script>
+  <script src="//code.jquery.com/jquery-2.0.2.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mocha/1.12.1/mocha.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/mocha/1.13.0/mocha.css" rel="stylesheet" />
+
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <div id="mocha"></div>
+  <div id="qunit-fixture" style="display:none;">
+    <div id="idMenuContainer"></div>
+  </div>
+
+  <!-- Framework setup -->
+  <script>
+    mocha.setup('tdd');
+    mocha.reporter('html');
+  </script>
+
+  <!-- Test Suites -->
+  <script>
+    suite('buildMenuItem', function() {
+
+      suite('#simple', function() {
+        var htmlObj;
+        setup(function() {
+          var data = {
+            'name': 'Research Fault',
+            'url': '#',
+            'category': 'Line Technician',
+            'icon': 'book'
+          };
+
+          htmlObj = buildMenuItem(data);
+        });
+
+        test("Expecting class icon-main to exist", function() {
+          chai.assert.ok(htmlObj.html().indexOf("icon-main") > 0);
+        });
+
+        test("Expecting class fa for Font-Awesome to exist", function() {
+          chai.assert.ok(htmlObj.html().indexOf("fa") > 0);
+        });
+      });
+
+
+      suite('#search', function() {
+        var htmlObj;
+        setup(function() {
+          var data = {
+            'name': 'Research Fault',
+            'url': '#',
+            'category': 'Line Technician',
+            'type': 'search',
+            'icon': 'book'
+          };
+
+          htmlObj = buildMenuItem(data);
+        });
+
+        test("Expecting class fa-search-plus to exist on Search items", function() {
+          chai.assert.ok(htmlObj.html().indexOf("fa-search-plus") > 0);
+        });
+      });
+
+      suite('#failure', function() {
+
+        test("Expecting failure due to malformed interface data", function() {
+          try {
+            buildMenuItem({});
+            chai.assert.fail("An error should have been thrown");
+          } catch (e) {
+            // Success if error thrown
+          }
+        });
+      });
+
+    });
+  </script>
+
+  <!-- Test execution -->
+  <script>
+    // Only tests run in real browser, injected script run if options.run == true
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+      mocha.run();
+    }
+  </script>
+
+</body>
+
+</html>

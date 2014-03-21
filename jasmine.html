@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Jasmine Spec Runner v2.0.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine.css">
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine-html.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/boot.js"></script>
+
+  <!-- include source files here... -->
+  <script src="//code.jquery.com/jquery-2.0.2.js"></script>
+  <script src="main.js"></script>
+
+  <!-- include spec files here... -->
+  <script>
+    describe('main.js', function() {
+
+      describe('#buildMenuItem( interface )', function() {
+        describe('-simple scenarios', function() {
+          var data = {
+            'name': 'Research Fault',
+            'url': '#',
+            'category': 'Line Technician',
+            'icon': 'book'
+          };
+          var html = buildMenuItem(data).html();
+
+          it("should contain the class 'icon-main'", function() {
+            expect(html).toContain("icon-main");
+          });
+          it("should contain the class 'fa' for Font-Awesome", function() {
+            expect(html).toContain("fa");
+          });
+        });
+
+
+        describe('-search scenarios', function() {
+
+          var data = {
+            'name': 'Research Fault',
+            'url': '#',
+            'category': 'Line Technician',
+            'type': 'search',
+            'icon': 'book'
+          };
+          var html = buildMenuItem(data).html();
+          it("expects class 'fa-search-plus' to exist on Search items", function() {
+            expect(html).toContain("fa-search-plus");
+          });
+        });
+
+        describe('-failure scenarios', function() {
+
+
+
+          function mySuccess() {;
+          }
+
+          it("should throw an error", function() {
+            expect(function() {
+              throw new Error("Bob");
+            }).toThrow();
+          });
+          it("should not throw an error", function() {
+            expect(function() {}).not.
+            toThrow();
+          });
+          it("should fail on malformed interface data", function() {
+            expect(buildMenuItem).
+            toThrow();
+          });
+        });
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
+
