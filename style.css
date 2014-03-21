@@ -1,0 +1,73 @@
+.menu-set {
+  padding: 0;
+  margin: 10px;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  justify-content: center;
+  -webkit-flex-flow: row wrap;  
+}
+
+.menu-item {
+  color: white;
+  background-color:#0B6121;
+  padding: 50px 10px 10px 10px;
+  width: 180px; 
+  height: 140px;
+  margin-top: 10px;
+  margin-right: 10px;
+
+  font-weight: bold;
+  text-align: center;
+  word-wrap: normal;
+
+  -webkit-transition: all .2s ease-in-out;
+}
+
+.menu-item { 
+  text-decoration: none;
+}
+.menu-item:hover { 
+  color: white;
+  background:#5899C3;
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  -webkit-transition: background-color .1s linear;
+}
+.menu-item:visited { 
+   color: white;
+   text-decoration: none;
+}
+
+.menu-item > .label {
+  font-size: 20px;
+  height: 50%;
+}
+
+.menu-item > .icon {
+  font-size: 40px; 
+  vertical-align: bottom;
+  height: 50%;
+}
+
+.menu-item .icon-main {
+  font-size: 40px; 
+}
+
+.menu-item .icon-super {
+  color: #DAA520;
+  font-size: 40%;
+  vertical-align: super;
+  position: relative;
+  top: -0.9em;
+}
+
+.blur {
+    filter: blur(3px);
+    -moz-filter: blur(3px);
+    -webkit-filter: blur(3px);    
+}
